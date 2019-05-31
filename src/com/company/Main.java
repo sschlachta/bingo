@@ -1,7 +1,5 @@
 package com.company;
 import java.util.*;
-import java.io.*;
-
 
 public class Main {
 
@@ -94,4 +92,9 @@ public class Main {
 
         }
     }
+
+    //NEXT TRY TO CHANGE THE BINGOO METHODSTO BE LESS WHAT THEY ARE RIGHT NOW
+    //IDEALLY HAVE ONE BINGOO METHOD CALLED PLAYBINGOROUND AND ONLY HAVE SEPARATE CHECKING METHODS
+    //THE GAME TYPE CAN BE A SEPARATE VARIABEL MADE INTO A BINGOO OBJECT
+
 }
