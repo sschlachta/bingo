@@ -7,60 +7,91 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("BINGO WAS HIS NAME-OE");
-        System.out.println("---------------------");
+        System.out.println("Welcome to Bingo!!!" +
+                "\n\nHere are the rules for the game: " +
+                "\n\n-Each round, a number will be randomly chosen 1-100" +
+                "\n-The game will search through your board to find the number" +
+                "\n-If it finds the number, it will remove it an replace it with the number 0" +
+                "\n-The game will also continuously check if you have bingo" +
+                "\n-It's up to you to decide what kind of Bingo game you'd like to play" +
+                "\n-There are four versions we offer: " +
+                "\n     ~Original: Across, Up+Down, and Diagonal Bingo(O)" +
+                "\n     ~Four Corners(FC)" +
+                "\n     ~T-Shaped(T)" +
+                "\n     ~Four Sides(FS)" +
+                "\n\nSo, what game would you like to play today? ");
 
-        System.out.println("\nWelcome to bingo! Here is your board: ");
-        System.out.println("\nB     I     N     G     O");
+        Scanner gameType = new Scanner(System.in);
+        String gt = gameType.next();
 
-        int bingoBoard[][] = new int[5][5];
+        if(gt.equalsIgnoreCase("O")) {
 
-        Random rnd = new Random();
+            boolean noEndGame = true;
 
-        for(int i = 0; i < bingoBoard.length; i++){
+            bingoo bb = new bingoo(5, 5);
 
-            for(int j = 0; j< bingoBoard[i].length; j++){
-
-                int fill = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-                bingoBoard[i][j] = fill;
+            int bingoBoard[][] = bb.createBoard();
 
 
+            bb.playTutorial(bb, bingoBoard);
+
+            while (bb.getYON()) {
+
+                bb.playBingoRound(bb, bingoBoard);
+
+            }
+
+        } else if(gt.equalsIgnoreCase("fc")){
+
+            boolean noEndGame = true;
+
+            bingoo bb = new bingoo(5, 5);
+
+            int bingoBoard[][] = bb.createBoard();
+
+
+            bb.playTutorial(bb, bingoBoard);
+
+            while (bb.getYON()) {
+
+                bb.playFourCorners(bb, bingoBoard);
+
+            }
+
+        } else if(gt.equalsIgnoreCase("T")){
+
+            boolean noEndGame = true;
+
+            bingoo bb = new bingoo(5, 5);
+
+            int bingoBoard[][] = bb.createBoard();
+
+
+            bb.playTutorial(bb, bingoBoard);
+
+            while (bb.getYON()) {
+
+                bb.playTShaped(bb, bingoBoard);
+
+            }
+
+        } else if(gt.equalsIgnoreCase("FS")){
+
+            boolean noEndGame = true;
+
+            bingoo bb = new bingoo(5, 5);
+
+            int bingoBoard[][] = bb.createBoard();
+
+
+            bb.playTutorial(bb, bingoBoard);
+
+            while (bb.getYON()) {
+
+                bb.playFourSides(bb, bingoBoard);
 
             }
 
         }
-
-        for (int i = 0; i < bingoBoard.length; i++) {
-
-            int f2 = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-            System.out.println(f2 + "    " + bingoBoard[i][0] + "    " + bingoBoard[i][1] + "    " + bingoBoard[i][2] + "    " + bingoBoard[i][3]);
-
-        }
-
-        System.out.println("\nReady to start? Great! Here's the first number: ");
-
-
-        int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        System.out.println("\n" + rN);
-
-        for(int i = 0; i < bingoBoard.length; i++){
-
-            for(int j = 0; j < bingoBoard[i].length; j++){
-
-                if(bingoBoard[i][j] == rN){
-
-                    bingoBoard[i][j] = 0;
-
-                }
-
-            }
-
-        }
-
-
-
     }
 }
