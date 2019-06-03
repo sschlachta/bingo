@@ -22,79 +22,23 @@ public class Main {
         Scanner gameType = new Scanner(System.in);
         String gt = gameType.next();
 
-        if(gt.equalsIgnoreCase("O")) {
+        boolean noEndGame = true;
 
-            boolean noEndGame = true;
+        bingoo bb = new bingoo(5, 5, gt);
 
-            bingoo bb = new bingoo(5, 5);
-
-            int bingoBoard[][] = bb.createBoard();
+        int bingoBoard[][] = bb.createBoard();
 
 
-            bb.playTutorial(bb, bingoBoard);
+        bb.playTutorial(bb, bingoBoard);
 
-            while (bb.getYON()) {
+        while (bb.yon) {
 
-                bb.playBingoRound(bb, bingoBoard);
-
-            }
-
-        } else if(gt.equalsIgnoreCase("fc")){
-
-            boolean noEndGame = true;
-
-            bingoo bb = new bingoo(5, 5);
-
-            int bingoBoard[][] = bb.createBoard();
-
-
-            bb.playTutorial(bb, bingoBoard);
-
-            while (bb.getYON()) {
-
-                bb.playFourCorners(bb, bingoBoard);
-
-            }
-
-        } else if(gt.equalsIgnoreCase("T")){
-
-            boolean noEndGame = true;
-
-            bingoo bb = new bingoo(5, 5);
-
-            int bingoBoard[][] = bb.createBoard();
-
-
-            bb.playTutorial(bb, bingoBoard);
-
-            while (bb.getYON()) {
-
-                bb.playTShaped(bb, bingoBoard);
-
-            }
-
-        } else if(gt.equalsIgnoreCase("FS")){
-
-            boolean noEndGame = true;
-
-            bingoo bb = new bingoo(5, 5);
-
-            int bingoBoard[][] = bb.createBoard();
-
-
-            bb.playTutorial(bb, bingoBoard);
-
-            while (bb.getYON()) {
-
-                bb.playFourSides(bb, bingoBoard);
-
-            }
+            bb.playBingoRound(bb, bingoBoard);
 
         }
+
     }
 
-    //NEXT TRY TO CHANGE THE BINGOO METHODSTO BE LESS WHAT THEY ARE RIGHT NOW
-    //IDEALLY HAVE ONE BINGOO METHOD CALLED PLAYBINGOROUND AND ONLY HAVE SEPARATE CHECKING METHODS
-    //THE GAME TYPE CAN BE A SEPARATE VARIABEL MADE INTO A BINGOO OBJECT
+    //HERE IS LINK TO FRAMES AND SUCH: https://www.quora.com/Can-I-create-a-game-with-Java
 
 }

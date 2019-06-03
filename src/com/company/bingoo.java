@@ -13,10 +13,12 @@ public class bingoo {
     boolean fn = false;
     int spotsFilled = 0;
     boolean BINGO = false;
+    String rT = " ";
 
-    public bingoo(int col, int rows){
+    public bingoo(int col, int rows, String roundType){
 
         bb = new int[col][rows];
+        rT = roundType;
 
     }
 
@@ -116,326 +118,6 @@ public class bingoo {
         return spot;
     }
 
-    public void playTShaped(bingoo brd, int[][] dub){
-
-        int nTF = brd.numTimesFound;
-
-        if(nTF > 0){
-
-            spotsFilled = spotsFilled + 1;
-
-        }
-
-        brd.printBoard(dub);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nReady to start round " + roundNum + "?");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nGreat! Here's the next number: ");
-
-        int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        if(checkNum(rN)){
-
-            foundNums[findNextSpot(foundNums)] = rN;
-
-        } else {
-
-            rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        }
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\n" + "-" + rN + "-");
-
-        brd.removeNums(dub, rN);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        brd.printBoard(dub);
-
-        if(roundNum >= 5){
-
-            if(checkForT(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-
-            }
-
-        }
-
-        System.out.println("\nThe number was found " + nTF +" times on your board!");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nWould you like to continue the game? Y/N");
-
-
-        Scanner yoy = new Scanner(System.in);
-        String ans = yoy.next();
-
-        if(ans.equalsIgnoreCase("y")){
-
-            yon = true;
-            roundNum = roundNum + 1;
-
-        } else {
-
-            yon = false;
-            roundNum = 0;
-
-        }
-
-    }
-
-    public void playFourCorners(bingoo brd, int[][] dub){
-
-        int nTF = brd.numTimesFound;
-
-        if(nTF > 0){
-
-            spotsFilled = spotsFilled + 1;
-
-        }
-
-        brd.printBoard(dub);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nReady to start round " + roundNum + "?");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nGreat! Here's the next number: ");
-
-        int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        if(checkNum(rN)){
-
-            foundNums[findNextSpot(foundNums)] = rN;
-
-        } else {
-
-            rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        }
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\n" + "-" + rN + "-");
-
-        brd.removeNums(dub, rN);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        brd.printBoard(dub);
-
-        if(roundNum >= 5){
-
-            if(checkForFourCorners(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-
-            }
-
-        }
-
-        System.out.println("\nThe number was found " + nTF +" times on your board!");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nWould you like to continue the game? Y/N");
-
-
-        Scanner yoy = new Scanner(System.in);
-        String ans = yoy.next();
-
-        if(ans.equalsIgnoreCase("y")){
-
-            yon = true;
-            roundNum = roundNum + 1;
-
-        } else {
-
-            yon = false;
-            roundNum = 0;
-
-        }
-
-    }
-
-    public void playFourSides(bingoo brd, int[][] dub){
-
-        int nTF = brd.numTimesFound;
-
-        if(nTF > 0){
-
-            spotsFilled = spotsFilled + 1;
-
-        }
-
-        brd.printBoard(dub);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nReady to start round " + roundNum + "?");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nGreat! Here's the next number: ");
-
-        int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        if(checkNum(rN)){
-
-            foundNums[findNextSpot(foundNums)] = rN;
-
-        } else {
-
-            rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-        }
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\n" + "-" + rN + "-");
-
-        brd.removeNums(dub, rN);
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        brd.printBoard(dub);
-
-        if(roundNum >= 5){
-
-            if(checkForFourSides(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-
-            }
-
-        }
-
-        System.out.println("\nThe number was found " + nTF +" times on your board!");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nWould you like to continue the game? Y/N");
-
-
-        Scanner yoy = new Scanner(System.in);
-        String ans = yoy.next();
-
-        if(ans.equalsIgnoreCase("y")){
-
-            yon = true;
-            roundNum = roundNum + 1;
-
-        } else {
-
-            yon = false;
-            roundNum = 0;
-
-        }
-
-    }
 
     public void playBingoRound(bingoo brd, int[][] dub){
 
@@ -503,12 +185,35 @@ public class bingoo {
 
         brd.printBoard(dub);
 
-        if(roundNum >= 5){
+        if(rT.equalsIgnoreCase("O")){
 
             if(checkForBingo(brd, dub)){
 
                 System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
 
+            }
+
+        } else if(rT.equalsIgnoreCase("FC")){
+
+            if(checkForFourCorners(brd, dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        } else if(rT.equalsIgnoreCase("T")){
+
+            if(checkForT(brd, dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        } else if(rT.equalsIgnoreCase("FS")){
+
+            if(checkForFourSides(brd, dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
 
             }
 
