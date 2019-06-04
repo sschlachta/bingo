@@ -14,6 +14,7 @@ public class bingoo {
     int spotsFilled = 0;
     boolean BINGO = false;
     String rT = " ";
+    boolean miniGameYon = false;
 
     public bingoo(int col, int rows, String roundType){
 
@@ -116,6 +117,156 @@ public class bingoo {
 
         }
         return spot;
+    }
+
+    public void play20Questions(){
+
+        ArrayList lo = new ArrayList();
+        ArrayList pw = new ArrayList();
+
+        pw.add("Toaster");
+        pw.add("Ostrich");
+        pw.add("Bike");
+        pw.add("Bread");
+        pw.add("Frog");
+        pw.add("Canoe");
+        pw.add("Lamp");
+        pw.add("Marker");
+        pw.add("Doctor");
+        pw.add("Xylophone");
+        pw.add("Violin");
+        pw.add("Happiness");
+        pw.add("Mountain");
+        pw.add("Fly");
+        pw.add("Fork");
+        pw.add("Horn");
+        pw.add("Tooth");
+        pw.add("Zebra");
+        pw.add("Park");
+        pw.add("Teacher");
+        pw.add("The White House");
+        pw.add("Juice");
+        pw.add("Tree");
+        pw.add("Yarn");
+        pw.add("Anger");
+
+        for(int i = 0; i < pw.size();i++){
+
+            System.out.println(pw.get(i));
+
+        }
+
+        System.out.println("\nPick any word from this list and think of it in your head!");
+
+        try {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex)
+        {
+            // do nothing
+        }
+
+        System.out.println("\nGot it? Great, let's get started!!");
+
+        try {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex)
+        {
+            // do nothing
+        }
+
+        System.out.println("Is your word alive?");
+        Scanner an = new Scanner(System.in);
+        String answ = an.next();
+
+        if(answ.equalsIgnoreCase("Y")){
+
+            lo.add("Toaster");
+            lo.add("Bike");
+            lo.add("Bread");
+            lo.add("Canoe");
+            lo.add("Lamp");
+            lo.add("Marker");
+            lo.add("Xylophone");
+            lo.add("Violin");
+            lo.add("Happiness");
+            lo.add("Mountain");
+            lo.add("Fork");
+            lo.add("Horn");
+            lo.add("Tooth");
+            lo.add("Park");
+            lo.add("The White House");
+            lo.add("Juice");
+            lo.add("Yarn");
+            lo.add("Anger");
+
+            pw.remove(0);
+            pw.remove(2);
+            pw.remove(3);
+            pw.remove(5);
+            pw.remove(6);
+            pw.remove(7);
+            pw.remove(9);
+            pw.remove(10);
+            pw.remove(11);
+            pw.remove(12);
+            pw.remove(14);
+            pw.remove(15);
+            pw.remove(16);
+            pw.remove(18);
+            pw.remove(20);
+            pw.remove(21);
+            pw.remove(23);
+            pw.remove(24);
+
+        } else if(answ.equalsIgnoreCase("N")){
+
+            pw.remove(1);
+            pw.remove(4);
+            pw.remove(8);
+            pw.remove(13);
+            pw.remove(17);
+            pw.remove(19);
+            pw.remove(22);
+            pw.remove(10);
+            pw.remove(11);
+            pw.remove(12);
+            pw.remove(14);
+            pw.remove(15);
+            pw.remove(16);
+            pw.remove(18);
+            pw.remove(20);
+            pw.remove(21);
+            pw.remove(23);
+            pw.remove(24);
+
+        }
+
+    }
+
+    public void playGuessMyNumber(){
+
+
+
+    }
+
+    public void playMiniGame(){
+
+        int rN = 1 + (int)(Math.random() * ((5 - 1) + 1));
+
+        System.out.println(rN);
+
+        if(rN == 1){
+
+            play20Questions();
+
+        } else if(rN == 2){
+
+            playGuessMyNumber();
+
+        }
+
     }
 
 
@@ -229,24 +380,34 @@ public class bingoo {
             // do nothing
         }
 
-        System.out.println("\nWould you like to continue the game? Y/N");
+        System.out.println("\nWould you like to play a mini game? Y/N");
+        Scanner mgg = new Scanner(System.in);
+        String mii = mgg.next();
 
+        if(mii.equalsIgnoreCase("Y")){
 
-        Scanner yoy = new Scanner(System.in);
-        String ans = yoy.next();
+            miniGameYon = true;
 
-        if(ans.equalsIgnoreCase("y")){
+        } else if(mii.equalsIgnoreCase("N")){
 
-            yon = true;
-            roundNum = roundNum + 1;
+            miniGameYon = false;
+            System.out.println("\nWould you like to continue the game? Y/N");
+            Scanner yoy = new Scanner(System.in);
+            String ans = yoy.next();
 
-        } else {
+            if(ans.equalsIgnoreCase("y")){
 
-            yon = false;
-            roundNum = 0;
+                yon = true;
+                roundNum = roundNum + 1;
+
+            } else {
+
+                yon = false;
+                roundNum = 0;
+
+            }
 
         }
-
 
     }
 

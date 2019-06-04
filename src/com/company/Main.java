@@ -11,8 +11,9 @@ public class Main {
                 "\n-The game will search through your board to find the number" +
                 "\n-If it finds the number, it will remove it an replace it with the number 0" +
                 "\n-The game will also continuously check if you have bingo" +
+                "\n-There are also a variety of mini games to play that you can choose to play after each bingo round!" +
                 "\n-It's up to you to decide what kind of Bingo game you'd like to play" +
-                "\n-There are four versions we offer: " +
+                "\n-There are four versions of Bingo we offer: " +
                 "\n     ~Original: Across, Up+Down, and Diagonal Bingo(O)" +
                 "\n     ~Four Corners(FC)" +
                 "\n     ~T-Shaped(T)" +
