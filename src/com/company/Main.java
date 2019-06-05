@@ -1,4 +1,5 @@
 package com.company;
+import javax.swing.*;
 import java.util.*;
 
 public class Main {
@@ -20,8 +21,19 @@ public class Main {
                 "\n     ~Four Sides(FS)" +
                 "\n\nSo, what game would you like to play today? ");
 
-        Scanner gameType = new Scanner(System.in);
-        String gt = gameType.next();
+        int g = -1;
+        String input = " ";
+        while(g < 0) {
+            input = JOptionPane.showInputDialog("Please Enter the Game you Wish to Play: ");
+            if (input.length() > 0) {
+                g++;
+                System.out.println("Thank you!");
+            } else {
+                System.out.println("Enter Your Game!");
+            }
+        }
+
+        String gt = input;
 
         boolean noEndGame = true;
 

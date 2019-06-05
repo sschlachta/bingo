@@ -1,4 +1,5 @@
 package com.company;
+import javax.swing.*;
 import java.util.ArrayList;
 
 import java.util.Scanner;
@@ -336,6 +337,21 @@ public class bingoo {
 
         brd.printBoard(dub);
 
+        int g = -1;
+        String input = " ";
+        while(g < 0) {
+            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " on Your Board: ");
+            if (Integer.parseInt(input) == nTF) {
+                g++;
+                System.out.println("Thank you!");
+            } else if(input.length() <= 0) {
+                System.out.println("Please Enter a Number!");
+            }else{
+                System.out.println("That number was not found that many times on your board, please take a second look!");
+            }
+        }
+
+
         if(rT.equalsIgnoreCase("O")){
 
             if(checkForBingo(brd, dub)){
@@ -489,6 +505,20 @@ public class bingoo {
             // do nothing
         }
 
+        int g = -1;
+        String input = " ";
+        while(g < 0) {
+            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " on Your Board: ");
+            if (Integer.parseInt(input) == nTF) {
+                g++;
+                System.out.println("Thank you!");
+            } else if(input.length() <= 0) {
+                System.out.println("Please Enter a Number!");
+            }else{
+                System.out.println("That number was not found that many times on your board, please take a second look!");
+            }
+        }
+
         System.out.println("\nThe number was found " + nTF +" times on your board!");
 
         try {
@@ -499,13 +529,21 @@ public class bingoo {
             // do nothing
         }
 
+        System.out.println("\n\n");
+        
+        int k = -1;
+        String inp = " ";
+        while(g < 0) {
+            inp = JOptionPane.showInputDialog("Would you like to continue the game? Y/N ");
+            if (input.length() > 0) {
+                k++;
+                System.out.println("Thank you!");
+            } else if(input.length() <= 0) {
+                System.out.println("Please Enter Y or N!");
+            }
+        }
 
-        System.out.println("\n\nWould you like to continue the game? Y/N");
-
-        Scanner yoy = new Scanner(System.in);
-        String ans = yoy.next();
-
-        if(ans.equalsIgnoreCase("y")){
+        if(inp.equalsIgnoreCase("y")){
 
             yon = true;
 
