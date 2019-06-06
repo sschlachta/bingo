@@ -30,6 +30,28 @@ public class bingoo {
 
     }
 
+    public int findNumTimesFound(int[][] aryy, int ranUm){
+
+        numTimesFound = 0;
+
+        for(int i = 0; i < aryy.length; i++){
+
+            for(int j = 0; j < aryy[i].length; j++){
+
+                if(aryy[i][j] == ranUm){
+
+                    numTimesFound = numTimesFound + 1;
+
+                }
+
+            }
+
+        }
+
+        return numTimesFound;
+
+    }
+
     public int[][] removeNums(int[][] ary, int ranUm){
 
         numTimesFound = 0;
@@ -271,14 +293,6 @@ public class bingoo {
 
     public void playBingoRound(bingoo brd, int[][] dub){
 
-        int nTF = brd.numTimesFound;
-
-        if(nTF > 0){
-
-            spotsFilled = spotsFilled + 1;
-
-        }
-
         brd.printBoard(dub);
 
         try {
@@ -310,6 +324,14 @@ public class bingoo {
         } else {
 
             rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
+
+        }
+
+        int nTF = brd.findNumTimesFound(dub, rN);
+
+        if(nTF > 0){
+
+            spotsFilled = spotsFilled + 1;
 
         }
 
@@ -498,7 +520,7 @@ public class bingoo {
             // do nothing
         }
 
-        int nTF = board.numTimesFound;
+        int nTF = board.findNumTimesFound(brd, rN);
 
         if(nTF > 0){
 
