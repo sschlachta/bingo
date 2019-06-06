@@ -78,9 +78,7 @@ public class bingoo {
 
         for (int i = 0; i < arry.length; i++) {
 
-            int f2 = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
-            System.out.println(f2 + "    " + arry[i][0] + "    " + arry[i][1] + "    " + arry[i][2] + "    " + arry[i][3]);
+            System.out.println(arry[i][0] + "    " + arry[i][1] + "    " + arry[i][2] + "    " + arry[i][3] + "    " + arry[i][4]);
 
         }
 
@@ -325,8 +323,6 @@ public class bingoo {
 
         System.out.println("\n" + "-" + rN + "-");
 
-        brd.removeNums(dub, rN);
-
         try {
             Thread.sleep(2000);
         }
@@ -335,15 +331,13 @@ public class bingoo {
             // do nothing
         }
 
-        brd.printBoard(dub);
-
         int g = -1;
         String input = " ";
         while(g < 0) {
             input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " on Your Board: ");
             if (Integer.parseInt(input) == nTF) {
                 g++;
-                System.out.println("Thank you!");
+                System.out.println("Great!");
             } else if(input.length() <= 0) {
                 System.out.println("Please Enter a Number!");
             }else{
@@ -351,6 +345,7 @@ public class bingoo {
             }
         }
 
+        brd.removeNums(dub, rN);
 
         if(rT.equalsIgnoreCase("O")){
 
@@ -388,6 +383,8 @@ public class bingoo {
 
         System.out.println("\nThe number was found " + nTF +" times on your board!");
 
+        brd.printBoard(dub);
+
         try {
             Thread.sleep(2000);
         }
@@ -396,22 +393,38 @@ public class bingoo {
             // do nothing
         }
 
-        System.out.println("\nWould you like to play a mini game? Y/N");
-        Scanner mgg = new Scanner(System.in);
-        String mii = mgg.next();
 
-        if(mii.equalsIgnoreCase("Y")){
+        int u = -1;
+        String intp = " ";
+        while(u < 0) {
+            intp = JOptionPane.showInputDialog("Would you like to play a Mini Game? Y/N");
+            if (intp.length() > 0) {
+                u++;
+                System.out.println("Thank you!");
+            } else if(intp.length() <= 0) {
+                System.out.println("Please Enter Y or N!");
+            }
+        }
+
+        if(intp.equalsIgnoreCase("Y")){
 
             miniGameYon = true;
 
-        } else if(mii.equalsIgnoreCase("N")){
+        } else if(intp.equalsIgnoreCase("N")){
 
-            miniGameYon = false;
-            System.out.println("\nWould you like to continue the game? Y/N");
-            Scanner yoy = new Scanner(System.in);
-            String ans = yoy.next();
+            int s = -1;
+            String inpt = " ";
+            while(s < 0) {
+                inpt = JOptionPane.showInputDialog("Would you like to continue the game? Y/N");
+                if (inpt.length() > 0) {
+                    s++;
+                    System.out.println("Thank you!");
+                } else if(inpt.length() <= 0) {
+                    System.out.println("Please Enter Y or N!");
+                }
+            }
 
-            if(ans.equalsIgnoreCase("y")){
+            if(inpt.equalsIgnoreCase("y")){
 
                 yon = true;
                 roundNum = roundNum + 1;
@@ -477,8 +490,6 @@ public class bingoo {
 
         System.out.println("\n" + "-" + rN + "-");
 
-        board.removeNums(brd, rN);
-
         try {
             Thread.sleep(2000);
         }
@@ -486,8 +497,6 @@ public class bingoo {
         {
             // do nothing
         }
-
-        board.printBoard(brd);
 
         int nTF = board.numTimesFound;
 
@@ -519,7 +528,11 @@ public class bingoo {
             }
         }
 
+        board.removeNums(brd, rN);
+
         System.out.println("\nThe number was found " + nTF +" times on your board!");
+
+        board.printBoard(brd);
 
         try {
             Thread.sleep(2000);
@@ -530,10 +543,10 @@ public class bingoo {
         }
 
         System.out.println("\n\n");
-        
+
         int k = -1;
         String inp = " ";
-        while(g < 0) {
+        while(k < 0) {
             inp = JOptionPane.showInputDialog("Would you like to continue the game? Y/N ");
             if (input.length() > 0) {
                 k++;
@@ -543,7 +556,7 @@ public class bingoo {
             }
         }
 
-        if(inp.equalsIgnoreCase("y")){
+        if(inp.equalsIgnoreCase("Y")){
 
             yon = true;
 
