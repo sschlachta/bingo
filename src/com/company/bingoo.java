@@ -6,16 +6,14 @@ import java.util.Scanner;
 
 public class bingoo {
 
-    int[][] bb;
-    int numTimesFound = 0;
-    int roundNum = 0;
     boolean yon = false;
-    int[] foundNums = new int[100];
-    boolean fn = false;
-    int spotsFilled = 0;
-    boolean BINGO = false;
-    String rT = " ";
-    boolean miniGameYon = false;
+    private int[][] bb;
+    private int numTimesFound = 0;
+    private int roundNum = 0;
+    private int[][] foundNums = new int[100][5];
+    private boolean fn = false;
+    private boolean BINGO = false;
+    String rT;
 
     public bingoo(int col, int rows, String roundType){
 
@@ -24,21 +22,63 @@ public class bingoo {
 
     }
 
-    public boolean getYON(){
+    public void saveTime(){
 
-        return yon;
+        try {
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException ex)
+        {
+            // do nothing
+        }
 
     }
 
-    public int findNumTimesFound(int[][] aryy, int ranUm){
+    public int setColumn(){
+
+        int col = 1 + (int)(Math.random() * (5 + 1));
+        col = col - 1;
+        return col;
+
+    }
+
+    public String getColumnLetter(int cl){
+
+        String gclng = " ";
+
+        if(cl == 0){
+
+            gclng = "B";
+
+        } else if(cl == 1){
+
+            gclng = "I";
+
+        } else if(cl == 2){
+
+            gclng = "N";
+
+        } else if(cl == 3){
+
+            gclng = "G";
+
+        } else if(cl == 4){
+
+            gclng = "O";
+
+        }
+
+        return gclng;
+
+    }
+
+    public int findNumTimesFound(int[][] aryy, int ranUm, int coln){
 
         numTimesFound = 0;
 
-        for(int i = 0; i < aryy.length; i++){
+            for(int j = 0; j < aryy.length; j++){
 
-            for(int j = 0; j < aryy[i].length; j++){
-
-                if(aryy[i][j] == ranUm){
+                if(aryy[j][coln] == ranUm){
 
                     numTimesFound = numTimesFound + 1;
 
@@ -46,30 +86,25 @@ public class bingoo {
 
             }
 
-        }
 
         return numTimesFound;
 
     }
 
-    public int[][] removeNums(int[][] ary, int ranUm){
+    public int[][] removeNums(int[][] ary, int ranUm, int col){
 
         numTimesFound = 0;
 
-        for(int i = 0; i < ary.length; i++){
+            for(int j = 0; j < ary.length; j++){
 
-            for(int j = 0; j < ary[i].length; j++){
+                if(ary[j][col] == ranUm){
 
-                if(ary[i][j] == ranUm){
-
-                    ary[i][j] = 0;
+                    ary[j][col] = 0;
                     numTimesFound = numTimesFound + 1;
 
                 }
 
             }
-
-        }
 
         return ary;
 
@@ -94,7 +129,7 @@ public class bingoo {
 
 
 
-    public void printBoard(int[][] arry){
+    private void printBoard(int[][] arry){
 
         System.out.println("\nB     I     N     G     O");
 
@@ -106,17 +141,13 @@ public class bingoo {
 
     }
 
-    public boolean checkNum(int ntbc){
+    private boolean checkNum(int ntbc, int columnArray){
 
         for(int i = 0; i < foundNums.length; i++){
 
-            if(ntbc == foundNums[i]){
+            if(ntbc == foundNums[i][columnArray]){
 
                 fn = false;
-
-            } else {
-
-                fn = true;
 
             }
 
@@ -124,315 +155,77 @@ public class bingoo {
         return fn;
     }
 
-    public int findNextSpot(int[] ary){
+    public int findNextSpot(int[][] ary){
 
         int spot = 0;
 
         for(int i = 0; i < ary.length; i++){
 
-            if(ary[i] == 0){
+            for(int j = 0; j < ary[i].length; j++) {
 
-                spot = i;
+                if (ary[i][j] == 0) {
 
+                    spot = i;
+
+                }
             }
-
         }
         return spot;
     }
 
-    public void play20Questions(){
-
-        ArrayList lo = new ArrayList();
-        ArrayList pw = new ArrayList();
-
-        pw.add("Toaster");
-        pw.add("Ostrich");
-        pw.add("Bike");
-        pw.add("Bread");
-        pw.add("Frog");
-        pw.add("Canoe");
-        pw.add("Lamp");
-        pw.add("Marker");
-        pw.add("Doctor");
-        pw.add("Xylophone");
-        pw.add("Violin");
-        pw.add("Happiness");
-        pw.add("Mountain");
-        pw.add("Fly");
-        pw.add("Fork");
-        pw.add("Horn");
-        pw.add("Tooth");
-        pw.add("Zebra");
-        pw.add("Park");
-        pw.add("Teacher");
-        pw.add("The White House");
-        pw.add("Juice");
-        pw.add("Tree");
-        pw.add("Yarn");
-        pw.add("Anger");
-
-        for(int i = 0; i < pw.size();i++){
-
-            System.out.println(pw.get(i));
-
-        }
-
-        System.out.println("\nPick any word from this list and think of it in your head!");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nGot it? Great, let's get started!!");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("Is your word alive?");
-        Scanner an = new Scanner(System.in);
-        String answ = an.next();
-
-        if(answ.equalsIgnoreCase("Y")){
-
-            lo.add("Toaster");
-            lo.add("Bike");
-            lo.add("Bread");
-            lo.add("Canoe");
-            lo.add("Lamp");
-            lo.add("Marker");
-            lo.add("Xylophone");
-            lo.add("Violin");
-            lo.add("Happiness");
-            lo.add("Mountain");
-            lo.add("Fork");
-            lo.add("Horn");
-            lo.add("Tooth");
-            lo.add("Park");
-            lo.add("The White House");
-            lo.add("Juice");
-            lo.add("Yarn");
-            lo.add("Anger");
-
-            pw.remove(0);
-            pw.remove(2);
-            pw.remove(3);
-            pw.remove(5);
-            pw.remove(6);
-            pw.remove(7);
-            pw.remove(9);
-            pw.remove(10);
-            pw.remove(11);
-            pw.remove(12);
-            pw.remove(14);
-            pw.remove(15);
-            pw.remove(16);
-            pw.remove(18);
-            pw.remove(20);
-            pw.remove(21);
-            pw.remove(23);
-            pw.remove(24);
-
-        } else if(answ.equalsIgnoreCase("N")){
-
-            pw.remove(1);
-            pw.remove(4);
-            pw.remove(8);
-            pw.remove(13);
-            pw.remove(17);
-            pw.remove(19);
-            pw.remove(22);
-            pw.remove(10);
-            pw.remove(11);
-            pw.remove(12);
-            pw.remove(14);
-            pw.remove(15);
-            pw.remove(16);
-            pw.remove(18);
-            pw.remove(20);
-            pw.remove(21);
-            pw.remove(23);
-            pw.remove(24);
-
-        }
-
-    }
-
-    public void playGuessMyNumber(){
-
-
-
-    }
-
-    public void playMiniGame(){
-
-        int rN = 1 + (int)(Math.random() * ((5 - 1) + 1));
-
-        System.out.println(rN);
-
-        if(rN == 1){
-
-            play20Questions();
-
-        } else if(rN == 2){
-
-            playGuessMyNumber();
-
-        }
-
-    }
-
-
     public void playBingoRound(bingoo brd, int[][] dub){
+
+        System.out.println("\nRound " + roundNum);
 
         brd.printBoard(dub);
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        brd.saveTime();
 
-        System.out.println("\nReady to start round " + roundNum + "?");
+        System.out.println("\nThe next number is: ");
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\nGreat! Here's the next number: ");
+        brd.saveTime();
 
         int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
 
-        if(checkNum(rN)){
+        int coll = setColumn();
 
-            foundNums[findNextSpot(foundNums)] = rN;
+        String cL = getColumnLetter(coll);
 
+        if(checkNum(rN, coll)){
+            foundNums[findNextSpot(foundNums)][coll] = rN;
         } else {
-
             rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
-
         }
 
-        int nTF = brd.findNumTimesFound(dub, rN);
+        int nTF = brd.findNumTimesFound(dub, rN, coll);
 
-        if(nTF > 0){
+        brd.saveTime();
 
-            spotsFilled = spotsFilled + 1;
+        System.out.println("\n" + "-" + cL + " " + rN + "-");
 
-        }
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-        System.out.println("\n" + "-" + rN + "-");
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        brd.saveTime();
 
         int g = -1;
-        String input = " ";
+        String input;
         while(g < 0) {
-            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " on Your Board: ");
+            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " in column " + cL + " on Your Board: ");
             if (Integer.parseInt(input) == nTF) {
                 g++;
-                System.out.println("Great!");
+                System.out.println("\nGreat!");
             } else if(input.length() <= 0) {
-                System.out.println("Please Enter a Number!");
+                System.out.println("\nPlease Enter a Number!");
             }else{
-                System.out.println("That number was not found that many times on your board, please take a second look!");
+                System.out.println("\nThat number was not found that many times on your board, please take a second look!");
             }
         }
 
-        brd.removeNums(dub, rN);
-
-        if(rT.equalsIgnoreCase("O")){
-
-            if(checkForBingo(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-            }
-
-        } else if(rT.equalsIgnoreCase("FC")){
-
-            if(checkForFourCorners(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-            }
-
-        } else if(rT.equalsIgnoreCase("T")){
-
-            if(checkForT(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-            }
-
-        } else if(rT.equalsIgnoreCase("FS")){
-
-            if(checkForFourSides(brd, dub)){
-
-                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
-
-            }
-
-        }
+        brd.removeNums(dub, rN, coll);
 
         System.out.println("\nThe number was found " + nTF +" times on your board!");
 
         brd.printBoard(dub);
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
-
-
-        int u = -1;
-        String intp = " ";
-        while(u < 0) {
-            intp = JOptionPane.showInputDialog("Would you like to play a Mini Game? Y/N");
-            if (intp.length() > 0) {
-                u++;
-                System.out.println("Thank you!");
-            } else if(intp.length() <= 0) {
-                System.out.println("Please Enter Y or N!");
-            }
-        }
-
-        if(intp.equalsIgnoreCase("Y")){
-
-            miniGameYon = true;
-
-        } else if(intp.equalsIgnoreCase("N")){
+        brd.saveTime();
 
             int s = -1;
             String inpt = " ";
@@ -440,11 +233,10 @@ public class bingoo {
                 inpt = JOptionPane.showInputDialog("Would you like to continue the game? Y/N");
                 if (inpt.length() > 0) {
                     s++;
-                    System.out.println("Thank you!");
+                    System.out.println("\nThank you!");
                 } else if(inpt.length() <= 0) {
-                    System.out.println("Please Enter Y or N!");
+                    System.out.println("\nPlease Enter Y or N!");
                 }
-            }
 
             if(inpt.equalsIgnoreCase("y")){
 
@@ -470,99 +262,57 @@ public class bingoo {
 
         System.out.println("\nWelcome to bingo! Here is your board: ");
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.saveTime();
 
         board.printBoard(brd);
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.saveTime();
 
         System.out.println("\nReady to start the tutorial? ");
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.saveTime();
 
         System.out.println("\nGreat! Here's the first number: ");
 
         int rN = 1 + (int)(Math.random() * ((100 - 1) + 1));
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.saveTime();
 
-        System.out.println("\n" + "-" + rN + "-");
+        int colle = setColumn();
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        String cLl = getColumnLetter(colle);
 
-        int nTF = board.findNumTimesFound(brd, rN);
+        System.out.println("\n" + "-" + cLl + " " + rN + "-");
 
-        if(nTF > 0){
+        board.saveTime();
 
-            spotsFilled = spotsFilled + 1;
+        int nTF = board.findNumTimesFound(brd, rN, colle);
 
-        }
-
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.saveTime();
 
         int g = -1;
         String input = " ";
         while(g < 0) {
-            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " on Your Board: ");
+            input = JOptionPane.showInputDialog("Please Enter the Number of Times You See " + rN + " in column " + cLl + " on Your Board: ");
             if (Integer.parseInt(input) == nTF) {
                 g++;
-                System.out.println("Thank you!");
+                System.out.println("\nThank you!");
             } else if(input.length() <= 0) {
-                System.out.println("Please Enter a Number!");
+                System.out.println("\nPlease Enter a Number!");
             }else{
-                System.out.println("That number was not found that many times on your board, please take a second look!");
+                System.out.println("\nThat number was not found that many times on your board, please take a second look!");
             }
         }
 
-        board.removeNums(brd, rN);
+        board.removeNums(brd, rN, colle);
 
         System.out.println("\nThe number was found " + nTF +" times on your board!");
 
         board.printBoard(brd);
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException ex)
-        {
-            // do nothing
-        }
+        board.checkBingo(board, brd, rT);
+
+        board.saveTime();
 
         System.out.println("\n\n");
 
@@ -572,9 +322,9 @@ public class bingoo {
             inp = JOptionPane.showInputDialog("Would you like to continue the game? Y/N ");
             if (input.length() > 0) {
                 k++;
-                System.out.println("Thank you!");
+                System.out.println("\nThank you!");
             } else if(input.length() <= 0) {
-                System.out.println("Please Enter Y or N!");
+                System.out.println("\nPlease Enter Y or N!");
             }
         }
 
@@ -582,62 +332,76 @@ public class bingoo {
 
             yon = true;
 
-        } else {
-
-            yon = false;
-
         }
 
     }
 
-    public boolean checkForFourSides(bingoo deoB, int[][] Tw){
+    private void checkBingo(bingoo brd, int[][] dub, String roundType){
+
+        if(roundType.equalsIgnoreCase("O")){
+
+            if(checkForBingo(dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        } else if(roundType.equalsIgnoreCase("FC")){
+
+            if(checkForFourCorners(dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        } else if(roundType.equalsIgnoreCase("T")){
+
+            if(checkForT(dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        } else if(roundType.equalsIgnoreCase("FS")){
+
+            if(checkForFourSides(dub)){
+
+                System.out.println("CONGRATULATIONS!!! YOU HAVE BINGO!!!");
+
+            }
+
+        }
+    }
+
+    public boolean checkForFourSides(int[][] Tw){
 
         BINGO = false;
+
         int isZero = 0;
 
         for(int i = 0; i < Tw[0].length; i++){
-
             if(Tw[0][i] == 0){
-
                 isZero++;
-
             }
-
             if(Tw[i][0] == 0){
-
                 isZero++;
-
             }
-
             if(Tw[4][i] == 0){
-
                 isZero++;
-
             }
-
             if(Tw[i][4] == 0){
-
                 isZero++;
-
             }
-
         }
-
         if(isZero == 16){
-
             BINGO = true;
-
         } else {
-
             BINGO = false;
-
         }
-
         return BINGO;
-
     }
 
-    public boolean checkForT(bingoo deoB, int[][] Tw){
+    private boolean checkForT(int[][] Tw){
 
         BINGO = false;
         int isZero = 0;
@@ -672,7 +436,7 @@ public class bingoo {
 
     }
 
-    public boolean checkForFourCorners(bingoo deoB, int[][] Tw){
+    public boolean checkForFourCorners(int[][] Tw){
 
         BINGO = false;
         int isZero = 0;
@@ -705,17 +469,13 @@ public class bingoo {
 
             BINGO = true;
 
-        } else {
-
-            BINGO = false;
-
         }
 
         return BINGO;
 
     }
 
-    public boolean checkForBingo(bingoo deobi, int[][] brd){
+    private boolean checkForBingo(int[][] brd){
 
         BINGO = false;
         int isZero = 0;
@@ -768,6 +528,5 @@ public class bingoo {
 
         return BINGO;
     }
-
 
 }
